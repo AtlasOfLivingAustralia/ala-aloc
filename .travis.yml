@@ -1,0 +1,17 @@
+language: java
+sudo: false
+jdk:
+- oraclejdk7
+branches:
+  only:
+  - master
+before_install:
+- export TZ=Australia/Canberra
+- date
+- mkdir -p ~/.m2; wget -q -O ~/.m2/settings.xml https://raw.githubusercontent.com/AtlasOfLivingAustralia/travis-build-configuration/master/travis_maven_settings.xml
+script: mvn clean install
+after_success: '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && mvn deploy'
+env:
+  global:
+  - secure: a+PAMwV3Nr4LKZP79W0Ocxx3yLbQSysIpBudQelVvuQ9qC+cME2eVXIjkenhRi58Ggh2y38vkqX44+t/e68Mw7WwGKyN+jYooKL8SaU3DHIedEXcrVpp+w+UM90i+DeflSDIsej1Kq7bY/Lai/3hTqaEI81hcVlqM5xQE8EIRzBWgYhWfu91h1Xr4MmsCvwZtIMYlvWCciOmKDa8IDotckd8GZwbECvhmA+GxdK5f+3yHKZVqMjoIhFreP4magQRFVC+AdQUq9peOOYcX832VM8W/A9YLHqX9CzZGFcRiu5iKiUAAdijmeVf289HIPAMbhlDLs4ttaw52HpqaU8+taBnrxRHvwhWfud4j4yXjX1BWTmyz1D6ySHZJD3nQCGM3i8irQB/ER8+y1vVkscmBYLG/T+DUwp0aqHHVVzdCnJDt8M/JKtymXhsL81ctP7Wmx+HzXKPCXRBpdL+Rh2oDF3bF+Gy3qRs1h+7M8F0gKLeNe2tRT+uAr7Cmc/nDBIex3TctdKdFQ/liB2Tq5uMpZanWoSOQETFHHXk+EjwT9In4DestUTlIT2U5sLWAVK84IO5iahosGn/ql+PW+QQcziqOWnF5R2YTUHKijKeW1aajZJZz3ZyoQl+aJK7U2Dhutck2gC666ftIqmE/J5jOECjg9BBtybk7jtGN5TBe+g=
+  - secure: Ssf+94Wy4v/+waE0qRM4VFjbv64QCDAvoHecQw5gRAYqrwwvFnmjDBaS7PKAhNGGuhDW6mWbwdFFhDUwo3+4CcLqRuGr9U2JfGzaUyxjdiGfvzn2FCwN3saRG/GY6TMSuMX2a3UpAtgtRgUWhfztVPbUaXjkLbbz8DK8omelu12COYLcUfQU0EL8lUkdThsmPCJCLAI0NyjIH68NKyUBBa8/SP3zl1iu7iDwy/ZbAnnO8t+kRRM4i6c22HeWXHL9YKcxr5Ge7NHNtpjbkW5Ffd6peBKylVAxiA9Srd7eHxQWwnehNsG9GXHbMAKBpiRzFX/KdTPYCrmI0AcJU94ZqgftuxNRW1PaBUyfPjsTWhvK7B2cCA2sUZjhZotyNozTMDJmF8qjIiel2C2ULIUEVkgWUgu+HmHk6dLejYdNIGcdVcTDTrMBtulJY822JA3t5Hvpd+FXclJEVeHsI+PAZFlZtvPhxcnWSU3QUfzed/hXqcOcBsk3JkOxKvXvJpjmhU+oK0Wdo+0l2whgs7V3+gd1CK4/Qv3ph/qsI1haFb8JGwZpF3iDByxSbc6jKxMpbm5Nwjsegv3N1xxnv94D+rnkmKRWXY30ABLDHJ54O3M8DbcDnPWe9i1Yfn9NoVCdzhQQgX64O97IHowLe9N9BHThDL4jEIa/Pq/hflsIV4Y=
